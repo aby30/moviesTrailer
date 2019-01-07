@@ -1,0 +1,406 @@
+@import "../atoms/variables";
+
+// Trailer page style START
+.movies {
+  background-color: rgba(0,0,0,0.5);
+  &__inner {
+    width: 100%;
+  }
+  &__header {
+    height: 60px;
+    padding: 30px 20px 40px;
+  }
+  &__headerInner {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: table;
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(0,0,0,0.5);
+    color: $bms-white;
+    z-index: 110;
+    @media(max-width: 640px) {
+      display: block;
+      text-align: center;
+    }
+  }
+  &__contentInner {
+    width: 99%;
+  }
+  &__pageTitle {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    @media(max-width: 640px) {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 0px;
+      @media(max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+  &__sortWrap {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    width: auto;
+    text-align: right;
+    @media(max-width: 640px) {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+// Trailer page style END
+
+// Movie Card style START
+.movieCard {
+  position: relative;
+  display: inline-block;
+  height: auto;
+  padding: 1% 10px 1%;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  transition: background-color 0s linear;
+
+  @media(min-width: 993px) {
+    width: calc(100% / 6);
+  }
+  @media(min-width: 769px) and (max-width: 992px) {
+    width: calc(100% / 5);
+  }
+  @media(min-width: 400px) and (max-width: 768px) {
+    width: calc(100% / 3);
+  }
+  @media(max-width: 399px) {
+    padding: 10px;
+    width: calc(100% / 2);
+  }
+  &.selectedMovieCard {
+    background-color: #484848;
+    padding: 0% 10px 1%;
+    border-radius: 4px;
+  }
+
+
+
+
+  @media(min-width: 993px) {
+    &:nth-child(6n+1) {
+      .trailer {
+        margin-left: 0%;
+        margin-left: 0px;
+      }
+    }
+    &:nth-child(6n+2) {
+      .trailer {
+        margin-left: -100%;
+        margin-left: calc(-100% + -20px);
+      }
+    }
+    &:nth-child(6n+3) {
+      .trailer {
+        margin-left: -200%;
+        margin-left: calc(-200% + -40px);
+      }
+    }
+    &:nth-child(6n+4) {
+      .trailer {
+        margin-left: -300%;
+        margin-left: calc(-300% + -60px);
+      }
+    }
+    &:nth-child(6n+5) {
+      .trailer {
+        margin-left: -400%;
+        margin-left: calc(-400% + -80px);
+      }
+    }
+    &:nth-child(6n) {
+      .trailer {
+        margin-left: -500%;
+        margin-left: calc(-500% + -100px);
+      }
+    }
+  }
+
+
+
+  @media(min-width: 769px) and (max-width: 992px) {
+    &:nth-child(5n+1) {
+      .trailer {
+        margin-left: 0%;
+        margin-left: 0px;
+      }
+    }
+    &:nth-child(5n+2) {
+      .trailer {
+        margin-left: -100%;
+        margin-left: calc(-100% + -20px);
+      }
+    }
+    &:nth-child(5n+3) {
+      .trailer {
+        margin-left: -200%;
+        margin-left: calc(-200% + -40px);
+      }
+    }
+    &:nth-child(5n+4) {
+      .trailer {
+        margin-left: -300%;
+        margin-left: calc(-300% + -60px);
+      }
+    }
+    &:nth-child(5n+5) {
+      .trailer {
+        margin-left: -400%;
+        margin-left: calc(-400% + -80px);
+      }
+    }
+  }
+
+  @media(min-width: 400px) and (max-width: 768px) {
+    &:nth-child(3n+1) {
+      .trailer {
+        margin-left: 0%;
+        margin-left: 0px;
+      }
+    }
+    &:nth-child(3n+2) {
+      .trailer {
+        margin-left: -100%;
+        margin-left: calc(-100% + -20px);
+      }
+    }
+    &:nth-child(3n+3) {
+      .trailer {
+        margin-left: -100%;
+        margin-left: calc(-200% + -40px);
+      }
+    }
+  }
+
+  @media(max-width: 399px) {
+    &:nth-child(2n+1) {
+      .trailer {
+        margin-left: 0%;
+        margin-left: 0px;
+      }
+    }
+    &:nth-child(2n+2) {
+      .trailer {
+        margin-left: -100%;
+        margin-left: calc(-100% + -20px);
+      }
+    }
+  }
+
+
+
+  &__thumb {
+    position: relative;
+    > img {
+      max-width: 100%;
+      border-radius: 4px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+  }
+  &__details {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    color: $bms-white;
+    border-radius: 4px;
+    z-index: 1;
+    background: linear-gradient(to bottom, transparent 0, transparent 21%, rgba(0, 0, 0, 0.55) 100%);
+    &:hover > .movieCard__moviePlay img {
+      transform: scale(1.4);
+    }
+  }
+  &__movieCharts {
+    position: relative;
+  }
+  &__movieLikesCnt {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    img {
+      width: 34px;
+      max-width: 100%;
+    }
+    span {
+      position: absolute;
+      display: inline-block;
+      left: 11px;
+      top: 16px;
+      font-size: 9px;
+    }
+  }
+  &__movieLaunch {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    float: right;
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+    span {
+      position: absolute;
+      left: -5px;
+      top: 13px;
+      transform: rotate(45deg);
+      display: block;
+      width: 80px;
+      padding: 3px 0;
+      font-size: 9px;
+      background-color: #3498db;
+      box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+      color: $bms-white;
+      text-transform: uppercase;
+      text-align: center;
+
+    }
+  }
+  &__moviePlay {
+    img {
+      display: block;
+      width: 50px;
+      max-width: 100%;
+      margin: 60px auto 50px;
+      transition: all 0.3s ease;
+      @media(max-width: 640px) {
+        width: 40px;
+        margin: 20px auto 20px;
+      }
+    }
+  }
+  &__title {
+    text-align: center;
+    text-transform: capitalize;
+    span {
+      font-weight: 600;
+      margin: 0 0 6px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      display: block;
+      + div {
+        font-size: 12px;
+      }
+    }
+  }
+}
+// Movie Card style END
+.trailer {
+  position: relative;
+  z-index: 2;
+  display: block;
+  max-height: 0px;
+  overflow: hidden;
+  // transform: scale(0.7);
+  max-height: 0px;
+  transition: all 0.5s linear;
+  @media(min-width: 993px) {
+    width: calc(600% + 100px);
+  }
+  @media(min-width: 769px) and (max-width: 992px) {
+    width: calc(500% + 80px);
+  }
+  @media(min-width: 400px) and (max-width: 768px) {
+    width: calc(300% + 40px);
+  }
+  @media(max-width: 399px) {
+    width: calc(200% + 20px);
+  }
+  &.expandTrailer {
+    // transform: scale(1);
+    max-height: 3000px;
+    overflow: visible;
+  }
+  img {
+    margin: 20px;
+    max-width: 100%;
+  }
+  &__inner {
+    display: table;
+    width: 100%;
+    height: 45%;
+    background-color: #484848;
+    border-radius: 4px;
+    margin: 0px 0 15px;
+    @media(max-width: 768px) {
+      display: block;
+      height: auto;
+    }
+  }
+  &__video, &__trailerDetails {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+    padding: 10px;
+    @media(max-width: 768px) {
+      display: block;
+      width: 100%;
+      padding: 10px 0px 10px 10px;
+    }
+  }
+  &__video {
+    text-align: left;
+    &--iframe {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      @media(max-width: 768px) {
+        height: auto;
+      }
+    }
+  }
+  &__trailerDetails {
+    color: $bms-white;
+  }
+  &__trailerDetailsInner {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    @media(max-width: 768px) {
+      height: auto;
+    }
+  }
+  &__trailerName {
+    font-size: 17px;
+    margin: 0 0 5px;
+    letter-spacing: 1px;
+  }
+  &__trailerLang {
+    font-size: 14px;
+    font-weight: 200;
+    margin: 0 0 15px;
+  }
+  &__trailerGenere {
+    span {
+      display: inline-block;
+      width: auto;
+      padding: 5px 10px;
+      font-size: 8px;
+      border: 1px solid $bms-white;
+      border-radius: 30px;
+      margin: 0 10px 10px 0;
+      text-transform: uppercase;
+    }
+  }
+  &__trailerPlot {
+    font-size: 13px;
+    font-weight: 200;
+    @media(max-width: 400px) {
+      font-size: 11px;
+    }
+  }
+}

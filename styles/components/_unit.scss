@@ -1,0 +1,88 @@
+@import "../atoms/variables";
+
+// Custom DropDown START
+.drpdwn {
+
+  &__sortContain {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    min-width: 130px;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 0 0 3%;
+    cursor: pointer;
+    &:hover .drpdwn__sortList {
+      max-height: 400px;
+      overflow: auto;
+    }
+    @media(max-width: 640px) {
+      font-size: 10px;
+    }
+  }
+  &__sortSelected {
+    padding: 7px 15px;
+    border: 1px solid $bms-input-border;
+    border-radius: 4px;
+    span {
+      float: right;
+      margin: 2px -9px 0 10px;
+      img {
+        max-width: 100%;
+        width: 13px;
+      }
+    }
+  }
+  &__sortList {
+    position: absolute;
+    background-color: $bms-white;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    z-index: 11;
+    text-align: left;
+    transition: .15s ease-in-out;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.13);
+    > div {
+      display: block;
+      padding: 10px;
+      color: $bms-text-light;
+      cursor: pointer;
+      &:hover {
+        background-color: $bms-bg-light;
+      }
+    }
+  }
+}
+
+// Custom DropDown END
+
+
+
+// Preloader START
+
+.preloader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(255,255,255,1);
+  z-index: 111;
+  &__inner {
+    display: table;
+    width: 100%;
+    height: 100%;
+    > div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  img {
+    width: 160px;
+    max-width: 100%;
+  }
+}
+
+// Preloader END

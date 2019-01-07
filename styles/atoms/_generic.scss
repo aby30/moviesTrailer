@@ -1,0 +1,16 @@
+
+body {
+  * input {
+    outline: none;
+  }
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.parentFloatWrap {
+  &:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}

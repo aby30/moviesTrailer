@@ -1,0 +1,83 @@
+
+<html ng-app="bms" ng-controller="mainController">
+  <head>
+    <title>BMS Trailers</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/styleAll.css"/>
+    <link rel="stylesheet" href="styles/views/homePage.css"/>
+    <script type="text/javascript" src="scripts/angular.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="preloader" ng-show="loading">
+      <div class="preloader__inner">
+        <div class="preloader__img"><img src="images/icons/ringLoading.gif"/></div>
+      </div>
+    </div>
+    <div class="movies">
+      <div class="movies__inner">
+        <div class="movies__contentWrap">
+          <div class="movies__header">
+            <div class="movies__headerInner parentFloatWrap">
+              <div class="movies__pageTitle">
+                <h1>Watch trending trailers</h1>
+              </div>
+              <div class="movies__sortWrap">
+                <div class="drpdwn__sortContain">
+                  <div class="drpdwn__sortSelected">{{ sort.selectedLang ? sort.selectedLang :'Select Language'}}<span><img src="images/icons/close.png" ng-show="sort.selectedLang" ng-click="sort.selectedLang = '';" title="Clear Selection"/></span></div>
+                  <div class="drpdwn__sortList">
+                    <div ng-repeat="language in langs" ng-model="$parent.sort.selectedLang" ng-click="$parent.sort.selectedLang = language;">{{language}}</div>
+                  </div>
+                </div>
+                <div class="drpdwn__sortContain">
+                  <div class="drpdwn__sortSelected">{{ sort.selectedGenre ? sort.selectedGenre :'Select Genre'}}<span><img src="images/icons/close.png" ng-show="sort.selectedGenre" ng-click="sort.selectedGenre = '';" title="Clear Selection"/></span></div>
+                  <div class="drpdwn__sortList">
+                    <div ng-repeat="genre in genres" ng-model="$parent.sort.selectedGenre" ng-click="$parent.sort.selectedGenre = genre;">{{genre}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="movies__contentInner">
+            <div class="movieCard" ng-repeat="eventObj in trailers | filter : {EventLanguage : sort.selectedLang, EventGenre : sort.selectedGenre}" ng-class="{'selectedMovieCard': $parent.active[$index]}">
+              <div class="trailer" ng-class="{'expandTrailer': $parent.active[$index] }">
+                <div class="trailer__inner">
+                  <div class="trailer__video">
+                    <iframe class="trailer__video--iframe" frameborder="0" id="trailerVideo_{{ $index }}" ng-src="{{ youtubeUrl ? youtubeUrl : '' }}" allowfullscreen="1"></iframe>
+                  </div>
+                  <div class="trailer__trailerDetails">
+                    <div class="trailer__trailerDetailsInner">
+                      <div class="trailer__trailerName">{{eventObj.EventTitle }}</div>
+                      <div class="trailer__trailerLang">{{eventObj.EventLanguage }}</div>
+                      <div class="trailer__trailerGenere"><span ng-repeat="genere in getGenere(eventObj.EventGenre)">{{genere}}</span></div>
+                      <div class="trailer__trailerPlot">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="movieCard__thumb" ng-click="youtubeUrl = getYoutubeEmbed(eventObj.TrailerURL);$parent.divToggle($index);"><img ng-src="{{ 'https://in.bmscdn.com/events/moviecard/' + eventObj.EventCode + '.jpg' }}"/>
+                <div class="movieCard__details">
+                  <div class="movieCard__movieCharts">
+                    <div class="movieCard__movieLikesCnt"><img src="images/icons/thumbUp.png"/><span>{{eventObj.wtsPerc}}%</span></div>
+                    <div class="movieCard__movieLaunch"><span>{{eventObj.DispReleaseDate | getReleaseDate}}</span></div>
+                  </div>
+                  <div class="movieCard__moviePlay"><img src="images/icons/play.png" ng-hide="$parent.active[$index]"/><img src="images/icons/close.png" ng-show="$parent.active[$index]"/></div>
+                  <div class="movieCard__title"><span>{{eventObj.EventTitle}} </span>
+                    <div>more details</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="movies__inner movies__noContent" ng-show="">Oops! No videos available right now.</div>
+    </div>
+  </body>
+</html>
